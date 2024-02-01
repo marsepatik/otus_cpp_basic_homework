@@ -12,7 +12,6 @@ add_executable(guess_the_number
     random.h
     game.cpp
     game.h
-    hight_scores.txt
 )
 
 set_target_properties(guess_the_number PROPERTIES
