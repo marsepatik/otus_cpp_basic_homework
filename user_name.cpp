@@ -17,12 +17,13 @@ void name()
 
 	if (!out_file.is_open()) {
 		std::cout << "Failed to open file for write: " << high_scores_filename << "!" << std::endl;
+		exit(1);
 	}
 	else {
 		std::cout << "Name " << name << " is added to Leaderboard!\n";
+		out_file.close();
 	}
 
-	game();
 	int tries = game();
 
 	out_file << name << ' ';
@@ -31,6 +32,7 @@ void name()
 	std::ifstream in_file{ high_scores_filename };
 	if (!in_file.is_open()) {
 		std::cout << "Failed to open file for read: " << high_scores_filename << "!" << std::endl;
+		exit(1);
 	}
 
 	while (true) {
@@ -39,6 +41,8 @@ void name()
 	in_file.ignore();
 
 	if (in_file.fail()) {
+		std::cout << "Fail to read leaderboard!" << std::endl << std::endl;
+		out_file.close();
 		break;
 	}
 		
